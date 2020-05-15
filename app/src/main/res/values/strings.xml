@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">KaiserPermanenteExercise</string>
+    <string name="tv_title">The Good Book</string>
+    <string name="tv_author">Biniam Berhane</string>
+    <string name="tv_description">lorem ipsum content</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
