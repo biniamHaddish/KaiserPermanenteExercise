@@ -57,22 +57,13 @@ class BooksFragment : Fragment() {
             list.addAll(books)
             mContext?.let { initAdapter(it, books) }
             bookCollections.addAll(list)
-
-//            books.forEach { books ->
-//                Log.d(TAG, "🙉😄🙈😄🙊 ID.... ${books.id}")
-//                Log.d(TAG, "🙉😄🙈😄🙊 Title.... ${books.title}")
-//                Log.d(TAG, "🙉😄🙈😄🙊 Author.... ${books.author}")
-//                Log.e(TAG, "🙉😄🙈😄🙊 Description.... ${books.description}")
-//            }
         })
-
 
         listView.setOnItemClickListener { _, _, position, _ ->
             val data = bookCollections[position]
             Log.e(TAG, "🙉😄🙈😄🙊 Click Event.... ${data} Clicked")
             val sendBooks = Books(data.id, data.title, data.author, data.description)
             goToDetails(sendBooks)
-            //Toast.makeText(context, "$data. 🙈", Toast.LENGTH_SHORT).show()
         }
 
         return view
@@ -82,7 +73,6 @@ class BooksFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context
-
     }
 
     private fun initAdapter(context: Context, booksList: List<Books>) {
@@ -91,15 +81,16 @@ class BooksFragment : Fragment() {
 
     }
 
-
     private fun goToDetails(books: Books) {
         val bundle = Bundle()
         bundle.putParcelable(Constants.DATA_KEY, books)
         val booksDetails = BookDetails()
         booksDetails.arguments = bundle
         //Replacing the fragment
-        parentFragmentManager.beginTransaction()
+        parentFragmentManager
+            .beginTransaction()
             .replace(R.id.container, booksDetails)
+            .addToBackStack(null)
             .commit()
     }
 }

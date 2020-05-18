@@ -14,26 +14,42 @@ class BooksAdapter(
     context: Context,
     private val dataSource: List<Books>
 ) : BaseAdapter() {
-
     private val inflater: LayoutInflater =
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-
-    @SuppressLint("ViewHolder")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-
-        val rowView = inflater.inflate(layout.books_item, parent, false)
-        val bookTitle = rowView.findViewById(R.id.book_title) as TextView
-        val bookAuthor = rowView.findViewById(R.id.book_author) as TextView
-        val bookDescription = rowView.findViewById(R.id.book_description) as TextView
-
         val book = getItem(position) as Books
+        val view: View
+        val holder: ViewHolder
+        if (convertView == null) {
+            view = inflater.inflate(layout.books_item, parent, false)
+            holder = ViewHolder()
+            holder.titleTextView = view.findViewById(R.id.book_title) as TextView
+            holder.subtitleTextView = view.findViewById(R.id.book_author) as TextView
+            holder.detailTextView = view.findViewById(R.id.book_description) as TextView
+            view.tag = holder
+        } else {
+            view = convertView
+            holder = convertView.tag as ViewHolder
+        }
+        val bookTitle = holder.titleTextView
+        val bookAuthor = holder.subtitleTextView
+        val bookDescription = holder.detailTextView
+
+        val des = book.description
+        val author = book.author
         bookTitle.text = book.title
-        bookAuthor.text = book.author
-        bookDescription.text = book.description
+        bookAuthor.text ="By:-" + authorDoesNotExisit(author)
+        bookDescription.text = textIsEmpty(des)
+        return view
+    }
 
+    private fun textIsEmpty(text: String?): String {
+        return text ?: " Description not provided"
+    }
 
-        return rowView
+    private fun authorDoesNotExisit(text: String?): String {
+        return  text ?: " No Author."
     }
 
     override fun getItem(position: Int): Any {
@@ -47,4 +63,10 @@ class BooksAdapter(
     override fun getCount(): Int {
         return dataSource.size
     }
+}
+
+private class ViewHolder {
+    lateinit var titleTextView: TextView
+    lateinit var subtitleTextView: TextView
+    lateinit var detailTextView: TextView
 }

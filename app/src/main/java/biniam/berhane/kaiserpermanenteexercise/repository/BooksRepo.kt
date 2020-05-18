@@ -25,6 +25,7 @@ class BooksRepo(private val booksDao: BooksDAO) {
 
     suspend fun saveToDb() {
         val books = client.getBooksAsync()
+
         books.apply {
             items.forEach { items ->
                 val title = items.volumeInfo?.title

@@ -3,61 +3,57 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="19dp">
 
 
     <TextView
         android:id="@+id/detailed_book_author"
-        android:layout_width="260dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="@dimen/margin_right"
+        android:layout_width="190dp"
+        android:layout_height="44dp"
         android:ellipsize="end"
-        android:fontFamily="@font/roboto"
+        android:fontFamily="@font/opensans"
         android:maxWidth="20dp"
         android:maxLines="1"
         android:padding="@dimen/padding"
         android:text="@string/tv_author"
         android:textSize="@dimen/small_text_size"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/detailed_book_title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/detailed_book_title"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.205" />
+        app:layout_constraintHorizontal_bias="0.312"
+        app:layout_constraintStart_toEndOf="@+id/detailed_book_title"
+        app:layout_constraintTop_toTopOf="@+id/detailed_book_title"
+        app:layout_constraintVertical_bias="0.8" />
 
     <TextView
         android:id="@+id/detailed_book_title"
-        android:layout_width="108dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="@dimen/margin_left"
-        android:layout_marginEnd="5dp"
+        android:layout_width="196dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:maxLines="1"
         android:fontFamily="@font/roboto"
         android:padding="@dimen/padding"
         android:text="@string/tv_title"
         android:textFontWeight="@integer/font_weight"
-        android:textSize="@dimen/small_text_size"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/detailed_book_author"
-        app:layout_constraintHorizontal_chainStyle="packed"
+        android:textSize="@dimen/medium_text_size"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.206" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/detailed_book_description"
-        android:layout_width="369dp"
-        android:layout_height="180dp"
-        android:layout_marginStart="@dimen/margin_left"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="@dimen/margin_right"
+        android:layout_width="389dp"
+        android:layout_height="306dp"
+        android:layout_marginTop="4dp"
         android:ellipsize="end"
         android:maxHeight="10dp"
         android:maxLines="10"
         android:text="@string/tv_description"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintHorizontal_bias="0.727"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/detailed_book_title"
+        app:layout_constraintTop_toBottomOf="@+id/detailed_book_author"
         tools:text="@tools:sample/lorem/random" />
 
 
