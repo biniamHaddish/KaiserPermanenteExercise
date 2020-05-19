@@ -33,38 +33,38 @@ class BookDetails : Fragment() {
         val layoutView = inflater.inflate(R.layout.book_details, container, false)
         initView(layoutView)
         Log.d(TAG, "Detailed Book Opened.......")
-        parseBundle()
+       parseBundle()
         return layoutView
     }
 
     private fun parseBundle() {
-        bundle = this.arguments!!
+        bundle = this.requireArguments()
         val book = bundle.getParcelable<Books>(Constants.DATA_KEY)
         title.text = book?.title
-        author.text = "By:- " + book?.author.toString()
+        author.text =  book?.author.toString()
         description.text = book?.description
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        bundle = this.arguments!!
-        val book = bundle.getParcelable<Books>(Constants.DATA_KEY)
-        outState.putString(Constants.TITLE, book?.title)
-        outState.putString(Constants.AUTHOR, book?.author)
-        outState.putString(Constants.DESCIPTION, book?.description)
-        super.onSaveInstanceState(outState)
-    }
+//    override fun onSaveInstanceState(outState: Bundle) {
+//        bundle = this.arguments!!
+//        val book = bundle.getParcelable<Books>(Constants.DATA_KEY)
+//        outState.putString(Constants.TITLE, book?.title)
+//        outState.putString(Constants.AUTHOR, book?.author)
+//        outState.putString(Constants.DESCIPTION, book?.description)
+//        super.onSaveInstanceState(outState)
+//    }
 
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-        val bundle = savedInstanceState ?: return
-        title.text = bundle.getString(Constants.TITLE)
-        author.text = bundle.getString(Constants.AUTHOR)
-        description.text = bundle.getString(Constants.DESCIPTION)
-    }
+//    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+//        super.onViewStateRestored(savedInstanceState)
+//        val bundle = savedInstanceState ?: return
+//        title.text = bundle.getString(Constants.TITLE)
+//        author.text = bundle.getString(Constants.AUTHOR)
+//        description.text = bundle.getString(Constants.DESCIPTION)
+//    }
 
     private fun initView(view: View) {
-        title = view.findViewById(R.id.detailed_book_title) as TextView
-        author = view.findViewById(R.id.detailed_book_author) as TextView
-        description = view.findViewById(R.id.detailed_book_description) as TextView
+        title = view.findViewById(R.id.d_book_title) as TextView
+        author = view.findViewById(R.id.d_book_author) as TextView
+        description = view.findViewById(R.id.d_book_description) as TextView
     }
 }

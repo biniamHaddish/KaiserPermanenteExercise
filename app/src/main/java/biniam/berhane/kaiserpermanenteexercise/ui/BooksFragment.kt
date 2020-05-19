@@ -7,12 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
-import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import biniam.berhane.kaiserpermanenteexercise.R
-import biniam.berhane.kaiserpermanenteexercise.database.BooksDatabase
+import biniam.berhane.kaiserpermanenteexercise.database.DataBaseHelper
 import biniam.berhane.kaiserpermanenteexercise.model.Books
 import biniam.berhane.kaiserpermanenteexercise.model.BooksAdapter
 import biniam.berhane.kaiserpermanenteexercise.utils.Constants
@@ -36,6 +39,8 @@ class BooksFragment : Fragment() {
     private val TAG = "BooksFragment"
     private var mContext: Context? = this.context
 
+    private lateinit var navController: NavController
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,16 +49,13 @@ class BooksFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_books, container, false)
         listView = view.findViewById(R.id.books_listView)
-        Log.e(TAG, "Fragment Loaded......... ")
 
         val application = requireNotNull(this.activity).application
-        val dataSource = BooksDatabase
-            .getInstance(application)
-            .booksDAO
-
+        val dataSource = DataBaseHelper(application, null)
+        Log.d(TAG, "Bookfragment Loaded..........🙈🙉🙊")
         val viewModelFactory = BooksViewModelFactory(dataSource, application)
         booksViewModel = ViewModelProvider(this, viewModelFactory).get(BooksViewModel::class.java)
-        booksViewModel.allBooks.observe(viewLifecycleOwner, Observer { books ->
+        booksViewModel.bookslivedata.observe(viewLifecycleOwner, Observer { books ->
             list.addAll(books)
             mContext?.let { initAdapter(it, books) }
             bookCollections.addAll(list)
@@ -69,6 +71,11 @@ class BooksFragment : Fragment() {
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(view)
+    }
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -82,15 +89,7 @@ class BooksFragment : Fragment() {
     }
 
     private fun goToDetails(books: Books) {
-        val bundle = Bundle()
-        bundle.putParcelable(Constants.DATA_KEY, books)
-        val booksDetails = BookDetails()
-        booksDetails.arguments = bundle
-        //Replacing the fragment
-        parentFragmentManager
-            .beginTransaction()
-            .replace(R.id.container, booksDetails)
-            .addToBackStack(null)
-            .commit()
+        val bundle = bundleOf(Constants.DATA_KEY to books)
+        findNavController().navigate(R.id.bookDetails,bundle)
     }
 }

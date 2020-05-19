@@ -1,6 +1,5 @@
 package biniam.berhane.kaiserpermanenteexercise.model
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -39,17 +38,9 @@ class BooksAdapter(
         val des = book.description
         val author = book.author
         bookTitle.text = book.title
-        bookAuthor.text ="By:-" + authorDoesNotExisit(author)
-        bookDescription.text = textIsEmpty(des)
+        bookAuthor.text = author
+        bookDescription.text = des
         return view
-    }
-
-    private fun textIsEmpty(text: String?): String {
-        return text ?: " Description not provided"
-    }
-
-    private fun authorDoesNotExisit(text: String?): String {
-        return  text ?: " No Author."
     }
 
     override fun getItem(position: Int): Any {

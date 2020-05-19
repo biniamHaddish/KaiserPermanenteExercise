@@ -7,55 +7,91 @@
 
     <TextView
         android:id="@+id/book_title"
-        android:layout_width="177dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="@dimen/margin_left"
-        android:layout_marginEnd="5dp"
+        android:layout_width="146dp"
+        android:layout_height="24dp"
         android:fontFamily="@font/roboto"
         android:maxLines="1"
-        android:padding="@dimen/padding"
+        android:ellipsize="end"
         android:text="@string/tv_title"
-        android:textFontWeight="@integer/font_weight"
         android:textSize="@dimen/medium_text_size"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/book_author"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.039" />
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <TextView
         android:id="@+id/book_author"
-        android:layout_width="208dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="@dimen/margin_right"
+        android:layout_width="88dp"
+        android:layout_height="20dp"
         android:ellipsize="end"
         android:fontFamily="@font/roboto"
-        android:maxWidth="20dp"
         android:maxLines="1"
-        android:padding="@dimen/padding"
         android:text="@string/tv_author"
         android:textSize="@dimen/small_text_size"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/book_title"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.039" />
+        app:layout_constraintBottom_toBottomOf="@+id/book_title"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintStart_toEndOf="@+id/book_title"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/book_description"
-        android:layout_width="376dp"
-        android:layout_height="81dp"
+        android:layout_width="377dp"
+        android:layout_height="66dp"
         android:ellipsize="end"
         android:maxLines="3"
-        android:padding="@dimen/padding"
         android:text="@string/tv_description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.257"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/book_title"
-        app:layout_constraintVertical_bias="0.012"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toEndOf="@+id/book_author"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/book_author"
+        app:layout_constraintVertical_bias="0.2"
         tools:text="@tools:sample/lorem/random" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="6dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="699dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="99dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="373dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="150dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package biniam.berhane.kaiserpermanenteexercise.network
 import biniam.berhane.kaiserpermanenteexercise.model.Books
 import biniam.berhane.kaiserpermanenteexercise.model.BooksListResponse
 import biniam.berhane.kaiserpermanenteexercise.utils.Constants
+import kotlinx.coroutines.Deferred
 import retrofit2.Call
 import retrofit2.http.GET
 
@@ -11,5 +12,5 @@ import retrofit2.http.GET
  */
 interface GoogleBooksService {
     @GET(Constants.BOOKS_URL)
-    suspend fun getBooksAsync(): BooksListResponse
+    fun getBooksAsync(): Call<BooksListResponse>
 }

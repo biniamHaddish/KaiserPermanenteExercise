@@ -7,8 +7,6 @@ object Constants {
     const val BASE_URL = "https://www.googleapis.com"
     const val BOOKS_URL = "/books/v1/volumes?q=science"
     const val DATA_KEY = "Details_key"
-    const val BOOKS_LIST = "BOOKS_LIST"
-    const val BACK_STACK_ROOT_TAG = "BACK_STACK_ROOT"
     const val TITLE = "TITLE"
     const val AUTHOR = "AUTHOR"
     const val DESCIPTION = "DESCIPTION"

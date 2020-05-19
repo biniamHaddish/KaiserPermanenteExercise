@@ -15,11 +15,21 @@ object Retrofit {
 
     private var gson: Gson = GsonBuilder()
         .setLenient()
+        .generateNonExecutableJson()
         .create()
 
+    private fun okHttpClient(): OkHttpClient {
+        val builder = OkHttpClient().newBuilder()
+            // to add Network request output
+            .addInterceptor(NetworkInterceptor())
+            .retryOnConnectionFailure(true)
+            .addInterceptor(CacheInterceptor())
+        return builder.build()
+    }
 
     fun googleBookApi(): GoogleBooksService {
         val retrofit = Retrofit.Builder()
+            .client(okHttpClient())
             .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
