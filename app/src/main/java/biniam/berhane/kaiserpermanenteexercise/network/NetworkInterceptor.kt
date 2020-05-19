@@ -1,8 +1,6 @@
 package biniam.berhane.kaiserpermanenteexercise.network
 
 import android.util.Log
-import biniam.berhane.kaiserpermanenteexercise.utils.Constants
-import biniam.berhane.kaiserpermanenteexercise.utils.NetworkMonitor
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
