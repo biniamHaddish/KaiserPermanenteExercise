@@ -1,6 +1,8 @@
 package biniam.berhane.kaiserpermanenteexercise.network
 
 import android.util.Log
+import biniam.berhane.kaiserpermanenteexercise.utils.Constants
+import biniam.berhane.kaiserpermanenteexercise.utils.NetworkMonitor
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
@@ -11,6 +13,8 @@ import okhttp3.Response
 private const val TAG = "NetworkInterceptor"
 
 class NetworkInterceptor : Interceptor {
+
+
     override fun intercept(chain: Interceptor.Chain): Response {
         val request: Request = chain.request()
         val response = chain.proceed(request)
@@ -32,4 +36,5 @@ class NetworkInterceptor : Interceptor {
         }
         return response
     }
+
 }

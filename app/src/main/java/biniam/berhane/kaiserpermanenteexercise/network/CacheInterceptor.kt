@@ -1,6 +1,5 @@
 package biniam.berhane.kaiserpermanenteexercise.network
 
-import android.nfc.Tag
 import okhttp3.CacheControl
 import okhttp3.Interceptor
 import okhttp3.Response

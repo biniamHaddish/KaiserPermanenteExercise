@@ -20,8 +20,8 @@ class BooksViewModel(
     application: Application
 ) : AndroidViewModel(application) {
 
-    var _bookslivedata = MutableLiveData<List<Books>>()
-    var bookslivedata: LiveData<List<Books>> = _bookslivedata
+    private var _booksLivedata = MutableLiveData<List<Books>>()
+    var bookslivedata: LiveData<List<Books>> = _booksLivedata
 
 
     private var viewModelJob = Job()
@@ -41,24 +41,32 @@ class BooksViewModel(
 
     private suspend fun insertBooksToDb() {
         withContext(Dispatchers.IO) {
-            BooksRepo().saveBookToBooksTable(
-                onSuccess = { book ->
-                    val id = book.id
-                    val title = book.title
-                    val author = book.author
-                    val description = book.description
-                    if (title != null && description != null && author != null) {
-                        dataBaseHelper.insertBook(
-                            id, title,
-                            author,
-                            description
-                        )
+            try {
+
+                BooksRepo().saveBookToBooksTable(
+                    onSuccess = { book ->
+                        val id = book.id
+                        val title = book.title
+                        val author = book.author
+                        val description = book.description
+                        if (title != null && description != null && author != null) {
+                            dataBaseHelper.insertBook(
+                                id, title,
+                                author,
+                                description
+                            )
+                        } else {
+                            Log.d(TAG, "Data is Empty")
+                        }
+                    },
+                    onError = { error ->
+                        Log.e(TAG, error)
                     }
-                },
-                onError = { error ->
-                    Log.e(TAG, error)
-                }
-            )
+                )
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.e(TAG, "${e.message}")
+            }
         }
     }
 
@@ -68,9 +76,8 @@ class BooksViewModel(
             val list = mutableListOf<Books>()
             try {
                 val cursor = dataBaseHelper.getAllBooks()
-                if (cursor != null) {
+                if (cursor != null && cursor.count > 0) {
                     while (cursor.moveToNext()) {
-
                         val titleIndex = cursor.getColumnIndex(DataBaseHelper.COLUMN_TITLE)
                         val authorIndex = cursor.getColumnIndex(DataBaseHelper.COLUMN_AUTHOR)
                         val descriptionIndex =
@@ -79,17 +86,15 @@ class BooksViewModel(
                         val title = cursor.getString(titleIndex)
                         val author = cursor.getString(authorIndex)
                         val description = cursor.getString(descriptionIndex)
-                        val books = Books(title=title, author = author, description = description)
-
+                        val books = Books(title = title, author = author, description = description)
                         list.add(books)
-
-                        Log.e(
+                        Log.d(
                             TAG,
                             "Cursor data ...........😄🙉 ....${cursor.getString(descriptionIndex)}"
                         )
                     }
                 }
-                _bookslivedata.postValue(list)
+                _booksLivedata.postValue(list)
                 cursor?.close()
             } catch (e: Exception) {
                 Log.d(TAG, "${e.message}")

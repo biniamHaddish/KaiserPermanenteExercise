@@ -4,6 +4,7 @@ import biniam.berhane.kaiserpermanenteexercise.utils.Constants
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -22,8 +23,8 @@ object Retrofit {
         val builder = OkHttpClient().newBuilder()
             // to add Network request output
             .addInterceptor(NetworkInterceptor())
-            .retryOnConnectionFailure(true)
             .addInterceptor(CacheInterceptor())
+            .retryOnConnectionFailure(true)
         return builder.build()
     }
 

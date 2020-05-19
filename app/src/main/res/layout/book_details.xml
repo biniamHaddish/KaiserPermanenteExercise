@@ -9,13 +9,13 @@
 
     <TextView
         android:id="@+id/d_book_description"
-        android:layout_width="373dp"
-        android:layout_height="224dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:ellipsize="end"
-        android:lines="20"
+        android:maxLines="20"
         android:text="@string/tv_description"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
-        app:layout_constraintEnd_toEndOf="@+id/d_book_author"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/d_book_author"
@@ -24,12 +24,12 @@
 
     <TextView
         android:id="@+id/d_book_author"
-        android:layout_width="232dp"
+        android:layout_width="0dp"
         android:layout_height="20dp"
         android:layout_marginEnd="56dp"
         android:layout_marginBottom="2dp"
-        android:ellipsize="end"
         android:drawableStart="@drawable/ic_person_black_24dp"
+        android:ellipsize="end"
         android:fontFamily="@font/roboto"
         android:maxLines="1"
         android:text="@string/tv_author"
@@ -51,8 +51,6 @@
         android:text="@string/tv_title"
         android:textSize="@dimen/medium_text_size"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
@@ -82,21 +80,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="328dp" />
+        app:layout_constraintGuide_begin="423dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="633dp" />
+        app:layout_constraintGuide_percent="0.96107054" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6"
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="156dp" />
+        app:barrierDirection="left" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

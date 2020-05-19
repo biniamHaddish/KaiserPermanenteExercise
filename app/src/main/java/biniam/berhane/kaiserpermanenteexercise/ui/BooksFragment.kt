@@ -26,12 +26,6 @@ import biniam.berhane.kaiserpermanenteexercise.viewmodel.BooksViewModelFactory
  * A simple [Fragment] subclass.
  */
 class BooksFragment : Fragment() {
-    companion object {
-        fun newInstance(): BooksFragment {
-            return BooksFragment()
-        }
-    }
-
     private lateinit var booksViewModel: BooksViewModel
     private lateinit var listView: ListView
     private var bookCollections = ArrayList<Books>()
@@ -73,6 +67,7 @@ class BooksFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //(activity as MainActivity).supportActionBar?.title = getString(R.string.your_title)
         navController = Navigation.findNavController(view)
     }
 

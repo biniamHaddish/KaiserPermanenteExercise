@@ -12,24 +12,25 @@ import retrofit2.Response
  * Designed and developed by Biniam Berhane on 14/05/2020.
  */
 
-
 private const val TAG = "BooksRepo"
 
 class BooksRepo {
-    val TAG = "BooksRepo"
+
     var client = Retrofit.googleBookApi()
 
     fun saveBookToBooksTable(onSuccess: (books: Books) -> Unit, onError: (error: String) -> Unit) {
+
         client.getBooksAsync().enqueue(object : Callback<BooksListResponse> {
             override fun onFailure(call: Call<BooksListResponse>, t: Throwable) {
                 t.printStackTrace()
                 onError("${t.message}")
             }
+
             override fun onResponse(
                 call: Call<BooksListResponse>,
                 response: Response<BooksListResponse>
             ) {
-                if (response.isSuccessful) {
+                if (response.isSuccessful && response.code() == 200) {
                     response.body()?.items?.forEach { items ->
                         val volumeData = items.volumeInfo
                         val id = items.id
@@ -40,10 +41,10 @@ class BooksRepo {
                         onSuccess(booksObject)
                     }
                     Log.d(TAG, "🧲.......Response isSuccessful..")
+                } else {
+                    Log.d(TAG, "Response UnSuccessful")
                 }
             }
         })
     }
-
-
 }
